@@ -45,7 +45,7 @@ if [[ -z "$package_type" ]]; then
 fi
 
 cd "$backend_dir"
-./mvnw clean package -Dquarkus.profile=prod -Pbuild,packaging,$build_variant
+./mvnw clean package -Dquarkus.profile=prod -DskipTests -Pbuild,packaging,$build_variant
 
 rm -rf "$input_dir"
 mkdir -p "$input_dir"
