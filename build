@@ -62,10 +62,17 @@ jlink \
 	--no-man-pages \
 	--compress=2
 
+app_version_for_package="$app_version"
+if [[ "$package_type" == "pkg" || "$package_type" == "dmg" ]]; then
+	if [[ "$app_version" == 0.* ]]; then
+		app_version_for_package="1.0.0"
+	fi
+fi
+
 common_args=(
 	--type "$package_type"
 	--name "$app_name"
-	--app-version "$app_version"
+	--app-version "$app_version_for_package"
 	--input "$input_dir"
 	--main-jar "$main_jar_name"
 	--main-class "$main_class"
