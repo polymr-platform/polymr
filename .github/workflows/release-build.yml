@@ -55,10 +55,19 @@ jobs:
           base="$(basename "$src")"
           version="${GITHUB_REF_NAME#v}"
           dest="$base"
-          dest="${dest/polymr_/polymr-${{ matrix.variant }}_}"
-          dest="${dest/polymr-/polymr-${{ matrix.variant }}-}"
-          dest="${dest/Polymr_/polymr-${{ matrix.variant }}_}"
-          dest="${dest/Polymr-/polymr-${{ matrix.variant }}-}"
+          dest="${dest#polymr-${{ matrix.variant }}_}"
+          dest="${dest#polymr-${{ matrix.variant }}-}"
+          dest="${dest#Polymr-${{ matrix.variant }}_}"
+          dest="${dest#Polymr-${{ matrix.variant }}-}"
+          dest="${dest#polymr_}"
+          dest="${dest#polymr-}"
+          dest="${dest#Polymr_}"
+          dest="${dest#Polymr-}"
+          if [[ "$dest" == *_* ]]; then
+            dest="polymr-${{ matrix.variant }}_$dest"
+          else
+            dest="polymr-${{ matrix.variant }}-$dest"
+          fi
           dest="$(echo "$dest" | sed -E "s/[0-9]+(\.[0-9]+){0,2}/$version/")"
           mv "$src" "$package_dir/$dest"
           echo "artifact_path=$package_dir/$dest" >> "$GITHUB_OUTPUT"
