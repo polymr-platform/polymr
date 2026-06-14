@@ -42,7 +42,7 @@ jobs:
         run: |
           shopt -s nullglob
           package_dir="backend/target/jpackage"
-          candidates=("$package_dir"/polymr_*)
+          candidates=("$package_dir"/*.{deb,rpm,pkg,dmg,msi,exe})
           if [[ ${#candidates[@]} -eq 0 ]]; then
             echo "No package found in $package_dir" >&2
             exit 1
@@ -53,7 +53,11 @@ jobs:
           fi
           src="${candidates[0]}"
           base="$(basename "$src")"
-          dest="${base/polymr_/polymr-${{ matrix.variant }}_}"
+          dest="$base"
+          dest="${dest/polymr_/polymr-${{ matrix.variant }}_}"
+          dest="${dest/polymr-/polymr-${{ matrix.variant }}-}"
+          dest="${dest/Polymr_/polymr-${{ matrix.variant }}_}"
+          dest="${dest/Polymr-/polymr-${{ matrix.variant }}-}"
           mv "$src" "$package_dir/$dest"
           echo "artifact_path=$package_dir/$dest" >> "$GITHUB_OUTPUT"
 

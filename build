@@ -104,6 +104,10 @@ case "$package_type" in
 		;;
 esac
 
-jpackage "${common_args[@]}" "${platform_args[@]}"
+if [[ ${#platform_args[@]} -gt 0 ]]; then
+	jpackage "${common_args[@]}" "${platform_args[@]}"
+else
+	jpackage "${common_args[@]}"
+fi
 
 echo "Created $package_type package in $package_dir"
