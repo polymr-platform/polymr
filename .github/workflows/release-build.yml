@@ -1,0 +1,63 @@
+name: Build Release Artifacts
+
+on:
+  release:
+    types: [created]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.os }}-${{ matrix.variant }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        variant: [postgresql, hsqldb]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Build package
+        shell: bash
+        run: |
+          chmod +x ./build
+          if [[ "${{ matrix.variant }}" == "postgresql" ]]; then
+            ./build
+          else
+            ./build "${{ matrix.variant }}"
+          fi
+
+      - name: Rename artifact
+        id: rename
+        shell: bash
+        run: |
+          shopt -s nullglob
+          package_dir="backend/target/jpackage"
+          candidates=("$package_dir"/polymr_*)
+          if [[ ${#candidates[@]} -eq 0 ]]; then
+            echo "No package found in $package_dir" >&2
+            exit 1
+          fi
+          if [[ ${#candidates[@]} -gt 1 ]]; then
+            echo "Multiple packages found: ${candidates[*]}" >&2
+            exit 1
+          fi
+          src="${candidates[0]}"
+          base="$(basename "$src")"
+          dest="${base/polymr_/polymr-${{ matrix.variant }}_}"
+          mv "$src" "$package_dir/$dest"
+          echo "artifact_path=$package_dir/$dest" >> "$GITHUB_OUTPUT"
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.rename.outputs.artifact_path }}
