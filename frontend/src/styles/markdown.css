@@ -1,0 +1,178 @@
+.markdown-body {
+	color: var(--text-primary);
+	line-height: 1.9;
+	font-size: var(--font-size-m);
+}
+
+.markdown-body p {
+	margin: 0 0 var(--space-s);
+}
+
+.markdown-body p:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body em, .markdown-body i {
+	font-style: italic;
+	color: color-mix(in srgb, var(--accent) 45%, var(--text-primary));
+}
+
+.markdown-body pre {
+	background: color-mix(in srgb, var(--bg-panel-strong) 85%, transparent);
+	border: 1px solid color-mix(in srgb, var(--color-info) 22%, transparent);
+	border-radius: var(--border-radius-s);
+	padding: var(--space-m);
+	overflow: auto;
+	margin: var(--space-s) 0;
+	position: relative;
+}
+
+.markdown-body pre code[class*="language-"] {
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+.markdown-body pre code[class*="language-"] .token.punctuation::after {
+	content: "\200B";
+}
+
+.markdown-body pre[class*='language-'] {
+	background: color-mix(in srgb, var(--bg-panel-strong) 85%, transparent);
+	border: 1px solid color-mix(in srgb, var(--color-info) 22%, transparent);
+}
+
+.markdown-body code {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.markdown-body .ansi-content {
+	font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+	font-size: 0.8rem;
+}
+
+.markdown-body .ansi-content .code-block {
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	padding: 0;
+	font-size: inherit;
+	color: inherit;
+	white-space: inherit;
+}
+
+.markdown-body :not(pre) > code {
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	padding: 0;
+	color: color-mix(in srgb, var(--color-success) 75%, var(--text-primary));
+}
+
+.markdown-body .markdown-code-copy {
+	position: absolute;
+	top: var(--space-xs);
+	right: var(--space-xs);
+	border: none;
+	background: color-mix(in srgb, var(--bg-panel-strong) 70%, transparent);
+	color: var(--text-muted);
+	font-size: var(--font-size-2xs);
+	padding: 4px 8px;
+	border-radius: var(--border-radius-2xs);
+	opacity: 0;
+	transition: opacity 0.15s ease;
+	cursor: pointer;
+}
+
+.markdown-body .markdown-code-copy svg {
+	width: var(--space-l);
+	height: var(--space-l);
+	display: block;
+}
+
+.markdown-body pre:hover .markdown-code-copy {
+	opacity: 1;
+}
+
+.markdown-body .markdown-code-copy:hover {
+	color: var(--text-primary);
+}
+
+.markdown-body .markdown-code-copy[data-state='copied'] {
+	color: var(--color-success);
+}
+
+.markdown-body .markdown-code-copy[data-state='failed'] {
+	color: var(--color-danger);
+}
+
+.markdown-body a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.markdown-body a:hover {
+	text-decoration: underline;
+}
+
+.markdown-body ul, .markdown-body ol {
+	margin: var(--space-xs) 0 var(--space-xs) var(--space-l);
+	padding: 0;
+}
+
+.markdown-body ol {
+	padding-left: var(--space-s);
+}
+
+.markdown-body li::marker {
+	color: var(--text-muted);
+}
+
+.markdown-body hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient( 90deg, color-mix(in srgb, var(--color-info) 35%, transparent), color-mix(in srgb, var(--accent) 20%, transparent));
+	margin: var(--space-m) 0;
+	opacity: 0.6;
+}
+
+.markdown-body table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid color-mix(in srgb, var(--text-primary) 16%, transparent);
+	background: color-mix(in srgb, var(--bg-panel-strong) 65%, transparent);
+	margin: var(--space-s) 0 var(--space-m);
+}
+
+.markdown-body th, .markdown-body td {
+	border: 1px solid color-mix(in srgb, var(--text-primary) 12%, transparent);
+	padding: var(--space-xs) var(--space-s);
+	vertical-align: top;
+}
+
+.markdown-body thead th {
+	background: color-mix(in srgb, var(--accent) 10%, transparent);
+	color: var(--text-primary);
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.markdown-body tbody tr:nth-child(even) {
+	background: color-mix(in srgb, var(--bg-panel) 70%, transparent);
+}
+
+.markdown-body .katex {
+	text-align: initial !important;
+	border-radius: var(--border-radius-2xs);
+	padding: 0 var(--space-2xs);
+}
+
+.markdown-body .katex-display {
+	margin: var(--space-s) 0 var(--space-m);
+	padding: var(--space-xs) var(--space-s);
+	border: 1px solid color-mix(in srgb, var(--text-primary) 12%, transparent);
+	border-radius: var(--border-radius-s);
+	background: color-mix(in srgb, var(--bg-panel-strong) 85%, transparent);
+	overflow-x: auto;
+}

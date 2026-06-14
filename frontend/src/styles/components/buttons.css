@@ -1,0 +1,138 @@
+button,
+		input[type='button'],
+		input[type='submit'],
+		input[type='reset'],
+		button.control,
+		a.control,
+		label.control {
+	border: var(--border-strong);
+	background: transparent;
+	color: var(--text-primary);
+	cursor: pointer;
+	text-decoration: none;
+	transition: border-color var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base), color var(--transition-base);
+}
+
+button, input[type='button'], input[type='submit'], input[type='reset'] {
+	border-radius: var(--radius-sm);
+	padding: calc(var(--space-xs) + 1px) var(--space-m);
+}
+
+button:hover,
+		input[type='button']:hover,
+		input[type='submit']:hover,
+		input[type='reset']:hover,
+		button.control:hover,
+		a.control:hover,
+		label.control:hover {
+	border-color: color-mix(in srgb, var(--text-muted) 55%, transparent);
+}
+
+button:focus-visible,
+		input[type='button']:focus-visible,
+		input[type='submit']:focus-visible,
+		input[type='reset']:focus-visible,
+		button.control:focus-visible,
+		a.control:focus-visible,
+		label.control:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 calc(var(--space-2xs) / 2) var(--accent-glow);
+}
+
+.control.primary {
+	background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+	color: var(--button-text);
+	border: none;
+	font-weight: 600;
+}
+
+.control.primary:hover {
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-soft);
+}
+
+.control.secondary {
+	background: color-mix(in srgb, var(--bg-panel-strong) 92%, transparent);
+	border: var(--border-strong);
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+button:disabled,
+		input[type='button']:disabled,
+		input[type='submit']:disabled,
+		input[type='reset']:disabled,
+		.control.secondary:disabled,
+		.control.ghost:disabled,
+		.control.primary:disabled {
+	opacity: 0.55;
+	cursor: not-allowed;
+	box-shadow: none;
+	transform: none;
+}
+
+.control.ghost {
+	border: none;
+	background: transparent;
+	color: var(--text-soft);
+	font-weight: 500;
+}
+
+.control.ghost.danger {
+	border-color: color-mix(in srgb, var(--color-danger) 60%, transparent);
+	color: var(--color-danger-soft);
+}
+
+.control.primary.danger {
+	background: linear-gradient(135deg, var(--color-danger), var(--color-danger-strong));
+	color: #fff7f3;
+}
+
+.control.primary.danger:hover {
+	box-shadow: 0 18px 40px -30px color-mix(in srgb, var(--color-danger) 70%, transparent);
+}
+
+.icon-button {
+	border: none;
+	background: transparent;
+	color: var(--text-soft);
+	padding: 0;
+	width: var(--control-height, var(--space-xl));
+	height: var(--control-height, var(--space-xl));
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon-button svg {
+	width: 16px;
+	height: 16px;
+}
+
+.inline-icon {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.inline-icon svg {
+	width: 14px;
+	height: 14px;
+	flex: 0 0 14px;
+}
+
+.model-type-pill {
+	margin-left: 4px;
+}
+
+.icon-button.icon-ghost:hover {
+	color: var(--accent);
+}
+
+.icon-button.icon-ghost.danger {
+	color: var(--color-danger-soft);
+}
+
+.icon-button.icon-ghost.danger:hover {
+	color: var(--color-danger-strong);
+}

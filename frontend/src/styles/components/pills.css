@@ -1,0 +1,128 @@
+.pill, .status-pill, .log-status, .log-ui, .tag:not(.token) {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2xs);
+	border-radius: 999px;
+	border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+	background: color-mix(in srgb, var(--accent) 12%, transparent);
+	color: color-mix(in srgb, var(--accent) 60%, var(--text-primary));
+	font-weight: 400;
+}
+
+.pill {
+	cursor: default;
+}
+
+.pill.policy {
+	border-color: color-mix(in srgb, var(--color-info) 50%, transparent);
+	background: color-mix(in srgb, var(--color-info) 14%, transparent);
+	color: var(--color-info-soft);
+	cursor: pointer;
+}
+
+.pill.tag, .tag:not(.token) {
+	border-color: rgba(148, 163, 184, 0.5);
+	background: rgba(148, 163, 184, 0.12);
+	color: var(--tag-text, #d0d7e2);
+}
+
+.pill.attention {
+	border-color: color-mix(in srgb, var(--color-info) 50%, transparent);
+	background: color-mix(in srgb, var(--color-info) 14%, transparent);
+	color: var(--color-info-soft);
+}
+
+.pill.success {
+	border-color: color-mix(in srgb, var(--color-success) 45%, transparent);
+	background: color-mix(in srgb, var(--color-success) 14%, transparent);
+	color: var(--color-success-soft);
+}
+
+.pill.warning {
+	border-color: color-mix(in srgb, var(--color-warning) 45%, transparent);
+	background: color-mix(in srgb, var(--color-warning) 14%, transparent);
+	color: var(--color-warning);
+}
+
+.pill.error, .pill.danger {
+	border-color: color-mix(in srgb, var(--color-danger) 45%, transparent);
+	background: color-mix(in srgb, var(--color-danger) 14%, transparent);
+	color: var(--color-danger-soft);
+}
+
+.status-pill.connected {
+	border-color: color-mix(in srgb, var(--color-success) 40%, transparent);
+	color: var(--color-success-soft);
+	background: color-mix(in srgb, var(--color-success) 14%, transparent);
+}
+
+.status-pill.connecting {
+	border-color: color-mix(in srgb, var(--text-soft) 40%, transparent);
+	color: var(--text-soft);
+	background: color-mix(in srgb, var(--text-soft) 12%, transparent);
+}
+
+.status-pill.disconnected {
+	border-color: color-mix(in srgb, var(--color-danger) 50%, transparent);
+	color: var(--color-danger-soft);
+	background: color-mix(in srgb, var(--color-danger) 14%, transparent);
+}
+
+.status-pill.icon-only {
+	padding: 4px;
+	width: 22px;
+	height: 22px;
+	justify-content: center;
+}
+
+.status-pill.icon-only::before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: currentColor;
+	display: inline-block;
+}
+
+.log-status::before {
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: currentColor;
+	display: inline-block;
+}
+
+.log-status.error::before {
+	display: none;
+}
+
+.log-status.success {
+	color: var(--color-success-soft);
+	border-color: color-mix(in srgb, var(--color-success) 40%, transparent);
+	background: color-mix(in srgb, var(--color-success) 14%, transparent);
+}
+
+.log-status.error {
+	color: var(--color-danger-soft);
+	border-color: color-mix(in srgb, var(--color-danger) 40%, transparent);
+	background: color-mix(in srgb, var(--color-danger) 14%, transparent);
+}
+
+.log-status.cancelled {
+	color: var(--color-warning);
+	border-color: color-mix(in srgb, var(--color-warning) 50%, transparent);
+	background: color-mix(in srgb, var(--color-warning) 16%, transparent);
+}
+
+.log-status.aborted {
+	color: var(--color-warning);
+	border-color: color-mix(in srgb, var(--color-warning) 45%, transparent);
+	background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+}
+
+.log-ui {
+	color: var(--color-info-soft);
+	border-color: color-mix(in srgb, var(--color-info) 40%, transparent);
+	background: color-mix(in srgb, var(--color-info) 12%, transparent);
+}

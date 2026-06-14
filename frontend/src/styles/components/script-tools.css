@@ -1,0 +1,55 @@
+.script-pill-row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.script-pill {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--border-subtle);
+	border-radius: 0.75rem;
+	background: var(--panel-subtle);
+}
+
+.script-pill strong {
+	display: block;
+}
+
+.script-picker {
+	margin-top: 0.75rem;
+	border: 1px solid var(--border-subtle);
+	border-radius: 0.75rem;
+	padding: 0.75rem;
+	background: var(--panel-strong);
+}
+
+.script-picker input {
+	width: 100%;
+	margin-bottom: 0.5rem;
+}
+
+.script-picker-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	max-height: 220px;
+	overflow: auto;
+}
+
+.script-picker-option {
+	text-align: left;
+	padding: 0.45rem 0.6rem;
+	border-radius: 0.6rem;
+	border: 1px solid transparent;
+	background: transparent;
+}
+
+.script-picker-option:hover {
+	border-color: var(--border-subtle);
+	background: var(--panel-subtle);
+}

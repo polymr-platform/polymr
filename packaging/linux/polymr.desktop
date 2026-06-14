@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Polymr
+Comment=Run the Polymr local server
+Exec=Polymr
+Icon=polymr
+Terminal=false
+Categories=Development;
+StartupNotify=true

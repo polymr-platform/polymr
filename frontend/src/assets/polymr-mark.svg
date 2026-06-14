@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Polymr">
+  <defs>
+    <linearGradient id="polyStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f97316" />
+      <stop offset="1" stop-color="#fb923c" />
+    </linearGradient>
+  </defs>
+  <g fill="#38bdf8" stroke="#38bdf8">
+	<circle cx="18" cy="20" r="2.6" />
+	<circle cx="46" cy="20" r="2.6" />
+	<circle cx="32" cy="11" r="2.6" />
+	<circle cx="18" cy="37" r="2.6" />
+	<circle cx="46" cy="37" r="2.6" />
+	<circle cx="32" cy="45" r="2.6" />
+  </g>
+  <g fill="none" stroke="url(#polyStroke)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 20l14-8 14 8v16l-14 8-14-8z" />
+    <path d="M18 20l14 8 14-8" />
+    <path d="M32 28v16" />
+  </g>
+</svg>

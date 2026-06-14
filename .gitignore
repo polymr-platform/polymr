@@ -1,0 +1,29 @@
+# Node/Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+
+# Maven/Quarkus
+backend/target/
+backend/.env
+backend/.env.*
+backend/.mcp-cli/
+
+# IDE
+.idea/
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Backend data
+backend/data/

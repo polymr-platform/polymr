@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm" version="3.0">
+	<entity class="be.celerex.polymr.model.Skill" metadata-complete="false">
+		<attributes>
+			<many-to-one name="tenant">
+				<join-column name="tenant_id" nullable="false"/>
+			</many-to-one>
+			<many-to-one name="workspace">
+				<join-column name="workspace_id"/>
+			</many-to-one>
+			<basic name="name">
+				<column name="name" nullable="false"/>
+			</basic>
+			<basic name="trigger">
+				<column name="trigger_value" nullable="false"/>
+			</basic>
+			<basic name="description">
+				<column name="description" nullable="false"/>
+			</basic>
+			<basic name="alwaysIncluded">
+				<column name="always_included" nullable="false"/>
+			</basic>
+			<basic name="promptText">
+				<column name="prompt_text"/>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>

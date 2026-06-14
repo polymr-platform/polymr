@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/celerex/json-editor@master/dist/editor.css"/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/polymr.svg"/>
+		<link rel="manifest" href="/manifest.webmanifest"/>
+		<meta name="theme-color" content="#f4efe6"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Polymr</title>
+		<script defer src="/javascript/onnx/ort.min.js"></script>
+		<script defer src="/javascript/vad/vad.bundle.min.js"></script>
+		<script
+			type="module"
+			src="/javascript/piper/piper-bridge.js"
+			async></script>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>

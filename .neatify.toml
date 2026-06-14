@@ -1,0 +1,8 @@
+ignore = [
+	"frontend/public/javascript/",
+	"backend/src/main/resources/sfc/compiler-sfc.bundle.js"
+]
+
+[pipeline]
+all = ["format", "lgpl3(holder=Alexander Verbruggen, year=2026)"]
+

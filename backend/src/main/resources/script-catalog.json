@@ -1,0 +1,19 @@
+{
+	"services": [
+		{
+			"name": "callTool",
+			"description": "Call a tool by its name or alias only (no server prefix).",
+			"import": "api.callTool"
+		},
+		{
+			"name": "callScript",
+			"description": "Run a released Groovy script by slug.",
+			"import": "api.callScript"
+		},
+		{
+			"name": "createSession",
+			"description": "Create a new conversation session.",
+			"import": "api.createSession"
+		}
+	]
+}

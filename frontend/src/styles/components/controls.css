@@ -1,0 +1,68 @@
+.control {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-xs);
+	padding: var(--control-pad-y, var(--space-xs)) var(--control-pad-x, var(--space-s));
+	font-size: var(--control-font-size, var(--font-size-s));
+	border-radius: var(--control-radius, var(--border-radius-m));
+	min-height: var(--control-height, auto);
+	line-height: 1;
+	font-family: inherit;
+}
+
+.control.size-2xs {
+	--control-pad-y: calc(var(--space-2xs) / 2);
+	--control-pad-x: var(--space-xs);
+	--control-font-size: var(--font-size-2xs);
+	--control-radius: var(--border-radius-2xs);
+	--control-height: var(--space-l);
+}
+
+.control.size-xs {
+	--control-pad-y: calc(var(--space-2xs) / 2);
+	--control-pad-x: var(--space-s);
+	--control-font-size: var(--font-size-xs);
+	--control-radius: var(--border-radius-xs);
+	--control-height: var(--space-xl);
+}
+
+.control.size-s {
+	--control-pad-y: var(--space-2xs);
+	--control-pad-x: var(--space-s);
+	--control-font-size: var(--font-size-s);
+	--control-radius: var(--border-radius-s);
+	--control-height: var(--space-2xl);
+}
+
+.control.size-m {
+	--control-pad-y: var(--space-xs);
+	--control-pad-x: var(--space-m);
+	--control-font-size: var(--font-size-m);
+	--control-radius: var(--border-radius-m);
+	--control-height: calc(var(--space-2xl) + var(--space-m));
+}
+
+.control.size-l {
+	--control-pad-y: var(--space-s);
+	--control-pad-x: var(--space-l);
+	--control-font-size: var(--font-size-l);
+	--control-radius: var(--border-radius-l);
+	--control-height: calc(var(--space-2xl) + var(--space-l));
+}
+
+.control.size-xl {
+	--control-pad-y: var(--space-s);
+	--control-pad-x: var(--space-xl);
+	--control-font-size: var(--font-size-xl);
+	--control-radius: var(--border-radius-xl);
+	--control-height: calc(var(--space-2xl) + var(--space-xl));
+}
+
+.control.size-2xl {
+	--control-pad-y: var(--space-m);
+	--control-pad-x: var(--space-2xl);
+	--control-font-size: var(--font-size-2xl);
+	--control-radius: var(--border-radius-2xl);
+	--control-height: calc(var(--space-2xl) * 2);
+}

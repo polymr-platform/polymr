@@ -1,0 +1,218 @@
+{
+	"components": [
+		{
+			"name": "MarkdownMessage",
+			"description": "Render Markdown content with syntax highlighting and math support.",
+			"import": "import { MarkdownMessage } from '@polymr/components'",
+			"props": [
+				{
+					"name": "content",
+					"type": "string",
+					"description": "Markdown text to render."
+				},
+				{
+					"name": "customRenderers",
+					"type": "object",
+					"description": "Optional renderers keyed by language for code blocks."
+				},
+				{
+					"name": "allowHtml",
+					"type": "boolean",
+					"description": "Allow raw HTML in markdown content. Defaults to false."
+				},
+				{
+					"name": "rendererOverrides",
+					"type": "object",
+					"description": "Override Markdown-It renderer rules (low-level). Keys are rule names (e.g. link_open, image)."
+				}
+			],
+			"usage": "<MarkdownMessage :content=\"markdownText\" />",
+			"examples": [
+				"const rendererOverrides = {\n  link_open(tokens, idx, options, env, self) {\n    const token = tokens[idx]\n    token.attrSet('target', '_blank')\n    token.attrSet('rel', 'noopener noreferrer nofollow')\n    return self.renderToken(tokens, idx, options)\n  }\n}\n\n<MarkdownMessage :content=\"markdownText\" :renderer-overrides=\"rendererOverrides\" />",
+				"const rendererOverrides = {\n  image(tokens, idx, options, env, self) {\n    const token = tokens[idx]\n    token.attrSet('loading', 'lazy')\n    token.attrSet('decoding', 'async')\n    return self.renderToken(tokens, idx, options)\n  }\n}\n\n<MarkdownMessage :content=\"markdownText\" :renderer-overrides=\"rendererOverrides\" />"
+			]
+		},
+		{
+			"name": "ConfirmModal",
+			"description": "Modal dialog for destructive or confirmation actions.",
+			"import": "import { ConfirmModal } from '@polymr/components'",
+			"props": [
+				{
+					"name": "open",
+					"type": "boolean",
+					"description": "Whether the modal is shown."
+				},
+				{
+					"name": "title",
+					"type": "string",
+					"description": "Modal title."
+				},
+				{
+					"name": "message",
+					"type": "string",
+					"description": "Modal description."
+				},
+				{
+					"name": "confirmLabel",
+					"type": "string",
+					"description": "Confirm button label."
+				},
+				{
+					"name": "destructive",
+					"type": "boolean",
+					"description": "Use destructive styling."
+				}
+			],
+			"usage": "<ConfirmModal v-model:open=\"open\" title=\"Confirm\" message=\"Are you sure?\" @confirm=\"handleConfirm\" @cancel=\"handleCancel\" />"
+		}
+	],
+	"css_variables": [
+		{
+			"name": "--bg-base",
+			"purpose": "Main page background"
+		},
+		{
+			"name": "--bg-alt",
+			"purpose": "Elevated surface background"
+		},
+		{
+			"name": "--bg-panel",
+			"purpose": "Panel background"
+		},
+		{
+			"name": "--bg-panel-strong",
+			"purpose": "High-contrast panel background"
+		},
+		{
+			"name": "--text-primary",
+			"purpose": "Primary text color"
+		},
+		{
+			"name": "--text-muted",
+			"purpose": "Muted text"
+		},
+		{
+			"name": "--text-soft",
+			"purpose": "Secondary text"
+		},
+		{
+			"name": "--accent",
+			"purpose": "Primary accent color"
+		},
+		{
+			"name": "--accent-strong",
+			"purpose": "Accent emphasis"
+		},
+		{
+			"name": "--color-success",
+			"purpose": "Success state"
+		},
+		{
+			"name": "--color-warning",
+			"purpose": "Warning state"
+		},
+		{
+			"name": "--color-danger",
+			"purpose": "Danger state"
+		},
+		{
+			"name": "--color-info",
+			"purpose": "Info state"
+		},
+		{
+			"name": "--border-subtle",
+			"purpose": "Subtle border"
+		},
+		{
+			"name": "--border-strong",
+			"purpose": "Strong border"
+		},
+		{
+			"name": "--shadow-panel",
+			"purpose": "Panel shadow"
+		},
+		{
+			"name": "--radius-sm",
+			"purpose": "Small border radius"
+		},
+		{
+			"name": "--radius-md",
+			"purpose": "Medium border radius"
+		},
+		{
+			"name": "--radius-lg",
+			"purpose": "Large border radius"
+		},
+		{
+			"name": "--space-xs",
+			"purpose": "Extra small spacing"
+		},
+		{
+			"name": "--space-s",
+			"purpose": "Small spacing"
+		},
+		{
+			"name": "--space-m",
+			"purpose": "Base spacing"
+		},
+		{
+			"name": "--space-l",
+			"purpose": "Large spacing"
+		},
+		{
+			"name": "--space-xl",
+			"purpose": "Extra large spacing"
+		},
+		{
+			"name": "--space-2xl",
+			"purpose": "Double extra large spacing"
+		},
+		{
+			"name": "--font-size-xs",
+			"purpose": "Extra small text"
+		},
+		{
+			"name": "--font-size-s",
+			"purpose": "Small text"
+		},
+		{
+			"name": "--font-size-m",
+			"purpose": "Base text size"
+		},
+		{
+			"name": "--font-size-l",
+			"purpose": "Large text"
+		},
+		{
+			"name": "--font-size-xl",
+			"purpose": "Extra large text"
+		}
+	],
+	"tools": [
+		{
+			"name": "getUsers",
+			"description": "List workspace users.",
+			"import": "import { getUsers } from '@polymr/api'"
+		},
+		{
+			"name": "callTool",
+			"description": "Call a tool by its name/alias only (no server prefix).",
+			"import": "import { callTool } from '@polymr/api'"
+		},
+		{
+			"name": "callScript",
+			"description": "Run a workspace script by path.",
+			"import": "import { callScript } from '@polymr/api'"
+		},
+		{
+			"name": "createSession",
+			"description": "Create a new conversation session. Supports optional context to preload the chat history.",
+			"import": "import { createSession } from '@polymr/api'"
+		},
+		{
+			"name": "notify",
+			"description": "Show a toast notification to the user.",
+			"import": "import { notify } from '@polymr/api'"
+		}
+	]
+}

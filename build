@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root_dir="$(cd "$(dirname "$0")" && pwd)"
+backend_dir="$root_dir/backend"
+app_name="Polymr"
+app_version="0.1.0"
+package_dir="$backend_dir/target/jpackage"
+input_dir="$backend_dir/target/jpackage-input"
+runtime_dir="$package_dir/runtime"
+build_variant="postgresql"
+main_class="be.celerex.polymr.launcher.PolymrLauncher"
+os_name="$(uname -s)"
+first_arg="${1:-}"
+second_arg="${2:-}"
+package_type=""
+packaging_dir="$root_dir/packaging"
+common_args=()
+platform_args=()
+
+if [[ "$first_arg" == "duckdb" || "$first_arg" == "postgresql" || "$first_arg" == "sqlite" || "$first_arg" == "hsqldb" ]]; then
+	build_variant="$first_arg"
+	package_type="${PACKAGE_TYPE:-$second_arg}"
+else
+	package_type="${PACKAGE_TYPE:-$first_arg}"
+fi
+
+main_jar_name="polymr-backend-0.1.0-SNAPSHOT-${build_variant}-runner.jar"
+
+if [[ -z "$package_type" ]]; then
+	case "$os_name" in
+		Linux)
+			package_type="deb"
+			;;
+		Darwin)
+			package_type="pkg"
+			;;
+		MINGW*|MSYS*|CYGWIN*)
+			package_type="msi"
+			;;
+		*)
+			echo "Unsupported platform: $os_name" >&2
+			exit 1
+			;;
+	esac
+fi
+
+cd "$backend_dir"
+./mvnw clean package -Dquarkus.profile=prod -Pbuild,packaging,$build_variant
+
+rm -rf "$input_dir"
+mkdir -p "$input_dir"
+cp "$backend_dir/target/$main_jar_name" "$input_dir/"
+
+rm -rf "$package_dir"
+mkdir -p "$package_dir"
+
+jlink \
+	--add-modules java.base,java.desktop,java.instrument,java.logging,java.management,java.naming,java.net.http,java.security.jgss,java.sql,jdk.crypto.ec,jdk.unsupported,jdk.zipfs,java.rmi,jdk.httpserver \
+	--output "$runtime_dir" \
+	--strip-debug \
+	--no-header-files \
+	--no-man-pages \
+	--compress=2
+
+common_args=(
+	--type "$package_type"
+	--name "$app_name"
+	--app-version "$app_version"
+	--input "$input_dir"
+	--main-jar "$main_jar_name"
+	--main-class "$main_class"
+	--runtime-image "$runtime_dir"
+	--dest "$package_dir"
+	--java-options "-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+	--icon "$packaging_dir/linux/polymr.png"
+)
+
+case "$package_type" in
+	app-image)
+		platform_args=()
+		;;
+	deb|rpm)
+		platform_args=(
+			--linux-package-name polymr
+			--linux-app-category Development
+			--resource-dir "$packaging_dir/linux"
+		)
+		;;
+	pkg|dmg)
+		platform_args=()
+		;;
+	msi|exe)
+		platform_args=(
+			--win-dir-chooser
+			--win-per-user-install
+			--win-menu
+			--resource-dir "$packaging_dir/windows"
+			--icon "$packaging_dir/windows/polymr.ico"
+		)
+		;;
+	*)
+		echo "Unsupported package type: $package_type" >&2
+		exit 1
+		;;
+esac
+
+jpackage "${common_args[@]}" "${platform_args[@]}"
+
+echo "Created $package_type package in $package_dir"

@@ -1,0 +1,15 @@
+@import './styles/theme.css';
+@import './styles/components/controls.css';
+@import './styles/components/buttons.css';
+@import './styles/components/pills.css';
+@import './styles/components/tooltips.css';
+@import './styles/components/script-tools.css';
+@import './styles/layout.css';
+@import './styles/menus.css';
+@import './styles/sessions.css';
+@import './styles/forms.css';
+@import './styles/markdown.css';
+@import 'katex/dist/katex.min.css';
+@import '@vue-flow/core/dist/style.css';
+@import '@vue-flow/core/dist/theme-default.css';
+@import './styles/workflows.css';

@@ -1,0 +1,34 @@
+/*
+* Copyright (C) 2026 Alexander Verbruggen
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Lesser General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+package be.celerex.polymr.session.dto;
+
+import be.celerex.polymr.modelregistry.telemetry.CostEstimate;
+import be.celerex.polymr.modelregistry.telemetry.ModelThreshold;
+import be.celerex.polymr.modelregistry.telemetry.TokenTotals;
+import java.util.List;
+
+public record SessionModelTelemetry(
+		TokenTotals token_totals,
+		Long cached_input_tokens,
+		Long pruned_tokens,
+		Double cache_ratio,
+		boolean approx,
+		String reference_model_id,
+		CostEstimate cost,
+		String cost_basis,
+		List<ModelThreshold> thresholds) {}

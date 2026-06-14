@@ -1,0 +1,51 @@
+.tooltip {
+	position: relative;
+}
+
+.tooltip[data-tip]::after {
+	content: attr(data-tip);
+	position: absolute;
+	left: 0;
+	bottom: calc(100% + 8px);
+	min-width: 0;
+	max-width: min(220px, 84vw);
+	width: max-content;
+	background: var(--bg-alt);
+	color: var(--text-primary);
+	border: var(--border-strong);
+	border-radius: var(--border-radius-s);
+	padding: var(--space-2xs) var(--space-s);
+	font-size: var(--font-size-xs);
+	box-shadow: var(--shadow-panel);
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(6px);
+	transition: 120ms ease;
+	z-index: 60;
+	white-space: normal;
+	word-break: break-word;
+}
+
+.tooltip.telemetry-token-tip[data-tip]::after, .tooltip.telemetry-cost-tip[data-tip]::after {
+	white-space: pre-line;
+}
+
+.tooltip[data-tip]:hover::after {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.tooltip.tip-left[data-tip]::after {
+	left: auto;
+	right: 0;
+}
+
+.tooltip.tip-down[data-tip]::after {
+	top: calc(100% + 8px);
+	bottom: auto;
+	transform: translateY(-6px);
+}
+
+.tooltip.tip-down[data-tip]:hover::after {
+	transform: translateY(0);
+}

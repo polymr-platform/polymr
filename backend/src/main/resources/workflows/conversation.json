@@ -1,0 +1,76 @@
+{
+	"type": "graph",
+	"name": "conversation",
+	"start": "user_input",
+	"logical_start": "llm",
+	"allow_workflow_tools": false,
+	"mcp": {
+		"inherit_workspace_tags": true,
+		"hide_denied_tools": true
+	},
+	"scopes": {
+		"inherit_workspace_scopes": true
+	},
+	"nodes": {
+		"user_input": {
+			"type": "user_input"
+		},
+		"llm": {
+			"type": "llm"
+		},
+		"tool_exec": {
+			"type": "tool_exec"
+		},
+		"await_children": {
+			"type": "await_children"
+		}
+	},
+	"edges": {
+		"user_input": {
+			"default": [
+				"llm"
+			],
+			"tool_exec": [
+				"tool_exec"
+			],
+			"pause": [
+				"__END__"
+			]
+		},
+		"llm": {
+			"default": [
+				"user_input"
+			],
+			"tool_exec": [
+				"tool_exec"
+			],
+			"complete": [
+				"__END__"
+			]
+		},
+		"tool_exec": {
+			"default": [
+				"llm"
+			],
+			"needs_approval": [
+				"user_input"
+			],
+			"await_children": [
+				"await_children"
+			]
+		},
+		"await_children": {
+			"default": [
+				"llm"
+			],
+			"pause": [
+				"__END__"
+			]
+		}
+	},
+	"recovery": {
+		"llm": "user_input",
+		"tool_exec": "llm",
+		"await_children": "await_children"
+	}
+}
